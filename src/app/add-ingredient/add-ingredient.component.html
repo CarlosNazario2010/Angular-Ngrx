@@ -1,0 +1,28 @@
+<form [formGroup]="form" class="row row-cols-lg-auto g-3 align-items-center">
+  <div class="col-6">
+      <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Ingredient"
+          formControlName="name"
+      >
+  </div>
+  <div class="col-6">
+      <input type="text"
+          size="3"
+          class="form-control"
+          id="amount"
+          placeholder="Amount"
+          formControlName="quantity"
+          type="number"
+      >
+  </div>
+
+  <div class="col-12">
+      <button type="submit" class="btn btn-primary"
+          (click)="addIngredient()"
+          [disabled]="form.invalid"
+      >Add</button>
+  </div>
+</form>

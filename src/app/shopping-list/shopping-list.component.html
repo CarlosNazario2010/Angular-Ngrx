@@ -1,0 +1,16 @@
+<ul class="mt-3">
+  <li *ngFor="let ingredient of (ingredients$ | async)" class="mt-2">
+      <span>{{ ingredient.quantity }}</span> -
+      <strong>{{ ingredient.name }}</strong>
+      <button class="btn btn-sm btn-danger ms-2"
+          (click)="removeIngredient(ingredient)"
+      >Remove</button>
+  </li>
+</ul>
+<div *ngIf="isSaving$ | async">
+  ... Saving
+</div>
+
+<div *ngIf="isDeleting$ | async">
+  ... Deleting
+</div>
