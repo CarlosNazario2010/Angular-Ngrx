@@ -3,7 +3,7 @@ import { IShoppingListCreateBase, IShoppingListItem } from "./shopping-list.stat
 
 // Ação para iniciar o carregamento da lista de compras
 export const loadShoppingList = createAction(
-  '[Shopping List] Load Shopping List'
+  '[Shopping List] Load Shopping List',
 );
 
 // Ação disparada com sucesso após o carregamento da lista de compras

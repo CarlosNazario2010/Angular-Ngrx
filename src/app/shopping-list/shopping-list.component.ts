@@ -1,3 +1,4 @@
+import { inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { loadShoppingList, removeShoppingListItem } from '../store/shopping-list.actions';
@@ -9,17 +10,22 @@ import { CommonModule } from '@angular/common';
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.scss'],
-  imports: [CommonModule]
+  imports: [
+    CommonModule
+  ],
+  providers: []
 })
 export class ShoppingListComponent implements OnInit {
 
-  private store!: Store;
+  store = inject(Store<any>);
 
-  constructor(store: Store) { }
+  ngOnInit(): void {
+    this.store.dispatch(loadShoppingList());
+  }
 
   ingredients$ = this.store.pipe(
     select(getShoppingList)
-  )
+  );
 
   isSaving$ = this.store.pipe(
     select(getShoppingListIsSaving)
@@ -28,10 +34,6 @@ export class ShoppingListComponent implements OnInit {
   isDeleting$ = this.store.pipe(
     select(getShoppingListIsDeleting)
   )
-
-  ngOnInit(): void {
-    this.store.dispatch(loadShoppingList())
-  }
 
   removeIngredient(item: IShoppingListItem) {
     this.store.dispatch(removeShoppingListItem({ item }))
